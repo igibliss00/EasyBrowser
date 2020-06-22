@@ -12,7 +12,7 @@ import WebKit
 class ViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView!
     var progressView:UIProgressView!
-    var websites = ["apple.com", "hackingwithswift.com"]
+    var websites = ["apple.com", "hackingwithswift.com", "google.com", "reddit.com"]
     
     override func loadView() {
         webView = WKWebView()
@@ -27,12 +27,14 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
+        let goBack = UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(webView.goBack))
+        let goForward = UIBarButtonItem(title: ">", style: .plain, target: self, action: #selector(webView.goForward))
         
         progressView = UIProgressView(progressViewStyle: .default)
         progressView.sizeToFit()
         let progressButton = UIBarButtonItem(customView: progressView)
         
-        toolbarItems = [progressButton, spacer, refresh]
+        toolbarItems = [goBack, goForward, progressButton, spacer, refresh]
         navigationController?.isToolbarHidden = false
         
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
@@ -78,7 +80,12 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 }
             }
         }
+        
+        let ac = UIAlertController(title: "Warning", message: "Unauthorized visit to a website", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(ac, animated: true)
         decisionHandler(.cancel)
+
     }
 }
 
