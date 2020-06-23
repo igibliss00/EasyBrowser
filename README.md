@@ -3,7 +3,7 @@
 In this project #4 of HackingWithSwift.com, I use Swift's Webkit to load websites, UIToolBar and UIProgressView to refresh and show the progress of loading, and finally use WKNavigationDelegate methods to allow or reject visiting certain websites.
 
 <img src="https://github.com/igibliss00/EasyBrowser/blob/master/README_assets/1.png" width="400">
-<img src="https://github.com/igibliss00/EasyBrowser/blob/master/README_assets/1.png" width="400">
+<img src="https://github.com/igibliss00/EasyBrowser/blob/master/README_assets/2.png" width="400">
 
 ## Installing
 
